@@ -13,5 +13,5 @@ int main()
             new StopTest(),
         });
 
-    test->run();
+    return test->run();
 }

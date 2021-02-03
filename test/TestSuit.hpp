@@ -17,7 +17,7 @@ public:
         this->cases = cases;
     }
 
-    void run()
+    int run()
     {
         std::cout << "= TestSuite(" << this->name << ") =" << std::endl;
         std::cout << "Starting " << this->cases.size() << " Test Cases:" << std::endl
@@ -59,6 +59,8 @@ public:
         std::cout << "Erros: " << endResult["errors"] << ", ";
         std::cout << "Succeeded: " << endResult["succeeded"] << std::endl
                   << std::endl;
+
+        return this->succeeded(endResult) ? 0 : 1;
     }
 
 protected:
