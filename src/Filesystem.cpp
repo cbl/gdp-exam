@@ -5,7 +5,7 @@
 
 /*! @copydoc Filesystem::getLines()
  *  
- * Reads the lines fo the file using fstream.
+ * Reads the lines of the file using fstream.
  */
 std::vector<std::string> Filesystem::getLines(const std::string &path)
 {
@@ -15,7 +15,7 @@ std::vector<std::string> Filesystem::getLines(const std::string &path)
 
     if (!file)
     {
-        throw std::runtime_error("Could not get file from path " + path);
+        throw std::runtime_error("Could not read file with path " + path);
     }
 
     while (std::getline(file, line))
