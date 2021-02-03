@@ -16,6 +16,12 @@ protected:
     std::vector<std::string> getLines();
 
 public:
+    /**
+     * Construct a new Database object.
+     * 
+     * @param files The Filesystem object.
+     * @param path The absolute path to the database file.
+     */
     Database(Filesystem *files, const std::string path);
 
     /**
