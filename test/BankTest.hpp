@@ -57,7 +57,7 @@ public:
     {
         Bank *bank = new Bank();
 
-        std::array<unsigned int, 7> expectedCoinTypes = {100, 50, 20, 10, 5, 2, 2};
+        std::array<unsigned int, 7> expectedCoinTypes = {100, 50, 20, 10, 5, 2, 1};
 
         this->makeAssertion((expectedCoinTypes == bank->getDescendingCoinTypes()));
     }
