@@ -1,0 +1,14 @@
+15
+5
+Hauptbahnhof
+5
+Südplatz
+2
+Hochschule
+1
+Zoo
+4
+Ganz weit weg 
+20
+Cafe
+1

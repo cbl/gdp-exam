@@ -1,0 +1,39 @@
+#pragma once
+
+#include <vector>
+#include "Stop.hpp"
+
+class StopCollection
+{
+protected:
+    std::vector<Stop *> stops;
+
+public:
+    /**
+     * Construct a new Stop Collection object.
+     * 
+     * @param stops A vector containing all available stop objects.
+     */
+    StopCollection(std::vector<Stop *> stops);
+
+    /**
+     * Returns the first stop that was found by the anonymous finder function.
+     * 
+     * Each available stop is passed to the finder one by one. As soon as the 
+     * finder returns the value true, the stop is output.
+     * 
+     * @param finder The anonymous finder function that determines what stops 
+     *      should be searched.
+     * @return Stop* The stop object that was found.
+     * 
+     * @throws std::invalid_argument Thrown when no stop was found.
+     */
+    Stop *findFirst(std::function<bool(Stop *)> finder);
+
+    /**
+     * Pass every stop one by one to the handler to do something with every stop.
+     * 
+     * @param handler The handler that handles every stop.
+     */
+    void forEach(std::function<void(Stop *)> handler);
+};
