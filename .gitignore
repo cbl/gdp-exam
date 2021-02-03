@@ -1,3 +1,5 @@
 .vscode
 /bin/*
 !/bin/.gitkeep
+!/bin/compile_tests.sh
+!/bin/run_tests.sh
