@@ -5,7 +5,7 @@
 
 /*! @copydoc Filesystem::getLines()
  *  
- * Reads the lines fo the file using fstream.
+ * Reads the lines of the file using fstream.
  */
 std::vector<std::string> Filesystem::getLines(const std::string &path)
 {
