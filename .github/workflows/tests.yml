@@ -14,6 +14,9 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v2
 
+            - name: Info
+              run: ls -l bin
+
             - name: Build test binaries
               run: sh bin/make_tests.sh
 
