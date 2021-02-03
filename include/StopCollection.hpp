@@ -17,6 +17,13 @@ public:
     StopCollection(std::vector<Stop *> stops);
 
     /**
+     * Gets the vector containing all stop objects.
+     * 
+     * @return std::vector<Stop *> The vector containing all stop objects.
+     */
+    std::vector<Stop *> getStops();
+
+    /**
      * Returns the first stop that was found by the anonymous finder function.
      * 
      * Each available stop is passed to the finder one by one. As soon as the 

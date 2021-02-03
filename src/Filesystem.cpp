@@ -3,8 +3,6 @@
 #include <fstream>
 #include "include/Filesystem.hpp"
 
-namespace fs = std::filesystem;
-
 /*! @copydoc Filesystem::getLines()
  *  
  * Reads the lines fo the file using fstream.

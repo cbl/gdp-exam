@@ -7,6 +7,11 @@ StopCollection::StopCollection(std::vector<Stop *> stops)
     this->stops = stops;
 }
 
+std::vector<Stop *> StopCollection::getStops()
+{
+    return this->stops;
+}
+
 Stop *StopCollection::findFirst(std::function<bool(Stop *)> finder)
 {
     for (const auto &stop : this->stops)

@@ -36,5 +36,5 @@ std::vector<std::string> Database::getLines()
 
 unsigned int Database::getPricePerDistance()
 {
-    return std::stoi(this->getLines().at(1));
+    return std::stoi(this->getLines().at(0));
 }
