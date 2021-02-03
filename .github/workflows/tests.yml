@@ -1,0 +1,25 @@
+name: tests
+
+on: [push, pull_request]
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: true
+
+        name: Tests
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Build test binaries
+              run: sh bin/make_tests.sh
+
+            - name: Execute tests
+              run: |
+                  bin/test_database
+                  bin/test_price_calculator
+                  bin/test_stop_collection
+                  bin/test
