@@ -15,7 +15,7 @@ std::vector<std::string> Filesystem::getLines(const std::string &path)
 
     if (!file)
     {
-        throw std::runtime_error("Could not get file from path " + path);
+        throw std::runtime_error("Could not read file with path " + path);
     }
 
     while (std::getline(file, line))
