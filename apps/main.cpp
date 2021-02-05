@@ -29,6 +29,17 @@ protected:
     StopCollection *stops;
     UserInterface *ui;
 
+    /**
+     * Determines whether the payment input value is valid.
+     * 
+     * A payment input is valid when:
+     * - it is greater than the price that is to be payed
+     * - it is in the range of unsigned integers
+     * 
+     * @param price The price input that is to be payed.
+     * @param amount 
+     * @return bool
+     */
     bool isValidPaymentInput(const unsigned int &price, const int &amount)
     {
         int diff = amount - price;
@@ -38,6 +49,10 @@ protected:
     }
 
 public:
+    /**
+     * Construct a new App object.
+     * 
+     */
     App()
     {
         const std::string dbPath = "db.txt";
@@ -49,11 +64,21 @@ public:
         this->stops = db->getStops();
     }
 
+    /**
+     * Get the Bank object.
+     * 
+     * @return Bank* 
+     */
     Bank *getBank()
     {
         return this->bank;
     }
 
+    /**
+     * Ask the user to enter a destination name.
+     * 
+     * @return Stop* 
+     */
     Stop *askForDestination()
     {
         Stop *destination;
@@ -81,6 +106,14 @@ public:
         }
     }
 
+    /**
+     * Ask the user to pay the given price.
+     * 
+     * The returned price is validated.
+     * 
+     * @param price The price that is to be payed.
+     * @return unsigned int The price payed by the user.
+     */
     unsigned int askForPayment(const unsigned int &price)
     {
         int paid;
@@ -109,7 +142,20 @@ public:
         }
     }
 
-    std::map<unsigned int, unsigned int> payment(Stop *destination, const unsigned int &price)
+    /**
+     * Handle payment for the given price.
+     * 
+     * Handling payment includes:
+     * - Asking the user to pay the price.
+     * - Calculating the change when the payed amount is greater than the price.
+     * - Give the user the option to cancel or retry payment when there's not 
+     *   enough change.
+     * 
+     * @param price The price that is to be payed.
+     * @return std::map<unsigned int, unsigned int> The calculated change for to 
+     *      repay the excess amount of money.
+     */
+    std::map<unsigned int, unsigned int> payment(const unsigned int &price)
     {
         std::map<unsigned int, unsigned int> change;
         unsigned int paid;
@@ -144,11 +190,21 @@ public:
         return change;
     }
 
+    /**
+     * Cancel the booking process.
+     * 
+     * @throws CanceledException
+     */
     void cancel()
     {
         throw CanceledException();
     }
 
+    /**
+     * Ask the user whether he wants to cancel the booking process.
+     * 
+     * @throws CanceledException
+     */
     void askForCancel()
     {
         char cancel;
@@ -162,6 +218,14 @@ public:
         }
     }
 
+    /**
+     * Give the given change to the user.
+     * 
+     * First the changen will be withdrawn from the bank, then it will be shown 
+     * on the user interface.
+     * 
+     * @param change The change the is to be given.
+     */
     void giveChange(const std::map<unsigned int, unsigned int> &change)
     {
         for (auto const &[coin, quantity] : change)
@@ -172,11 +236,32 @@ public:
         this->ui->showChange(change);
     }
 
+    /**
+     * Print the ticket to the given destination and the price.
+     * 
+     * The ticket contains the destination name and the price.
+     * 
+     * @param destination The ticket's destination.
+     * @param price The ticket price.
+     */
     void printTicket(Stop *destination, const unsigned int &price)
     {
         this->ui->showTicket(destination, price);
     }
 
+    /**
+     * Handle ticket booking.
+     * 
+     * Handling ticket booking includes:
+     * - All available stops are displayed.
+     * - The user is asked to enter a destination.
+     * - The selected destination is displayed.
+     * - The price for the destination is calculated.
+     * - The calculated ticket price is displayed.
+     * - The user is asked to pay.
+     * - The ticket is printed.
+     * - The calculated change is given to the user.
+     */
     void booking()
     {
         Stop *destination;
@@ -195,7 +280,7 @@ public:
         this->ui->showDestinationPrice(price);
 
         // Payment.
-        change = this->payment(destination, price);
+        change = this->payment(price);
 
         this->printTicket(destination, price);
         this->giveChange(change);
@@ -243,5 +328,9 @@ int main()
     catch (const std::exception &e)
     {
         app->handleException(e);
+
+        return 1;
     }
+
+    return 0;
 }
