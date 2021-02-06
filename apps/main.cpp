@@ -21,33 +21,6 @@ struct CanceledException : public std::exception
 
 class App
 {
-protected:
-    Filesystem *files;
-    Database *db;
-    Bank *bank;
-    PriceCalculator *priceCalculator;
-    StopCollection *stops;
-    UserInterface *ui;
-
-    /**
-     * Determines whether the payment input value is valid.
-     * 
-     * A payment input is valid when:
-     * - it is greater than the price that is to be payed
-     * - it is in the range of unsigned integers
-     * 
-     * @param price The price input that is to be payed.
-     * @param amount 
-     * @return bool
-     */
-    bool isValidPaymentInput(const unsigned int &price, const int &amount)
-    {
-        int diff = amount - price;
-        unsigned int max = -1;
-
-        return diff > 0 && amount < max;
-    }
-
 public:
     /**
      * Construct a new App object.
@@ -286,6 +259,10 @@ public:
         this->giveChange(change);
     }
 
+    /**
+     * Run the 
+     * 
+     */
     void run()
     {
         while (true)
@@ -301,9 +278,43 @@ public:
         }
     }
 
+    /**
+     * Handle the given exception.
+     * 
+     * Logs the exception message to the console.
+     * 
+     * @param e The exception that is to be handled.
+     */
     void handleException(const std::exception &e)
     {
         std::cout << "[Error]: \"" << e.what() << "\"\n";
+    }
+
+protected:
+    Filesystem *files;
+    Database *db;
+    Bank *bank;
+    PriceCalculator *priceCalculator;
+    StopCollection *stops;
+    UserInterface *ui;
+
+    /**
+     * Determines whether the payment input value is valid.
+     * 
+     * A payment input is valid when:
+     * - it is greater than the price that is to be payed
+     * - it is in the range of unsigned integers
+     * 
+     * @param price The price input that is to be payed.
+     * @param amount 
+     * @return bool
+     */
+    bool isValidPaymentInput(const unsigned int &price, const int &amount)
+    {
+        int diff = amount - price;
+        unsigned int max = -1;
+
+        return diff >= 0 && amount < max;
     }
 };
 
@@ -320,6 +331,8 @@ int main()
     bank->deposit(5, 2);
     bank->deposit(2, 2);
     bank->deposit(1, 2);
+
+    delete bank;
 
     try
     {

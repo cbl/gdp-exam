@@ -11,7 +11,7 @@
 class BankTest : public TestCase
 {
 public:
-    std::vector<std::function<void()>> getTests() override
+    std::vector<std::function<void()> > getTests() override
     {
         return {
             [this]() { this->test_deposit(); },
