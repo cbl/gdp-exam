@@ -27,7 +27,7 @@ public:
         Bank *bank = new Bank();
         bank->deposit(50, 3);
         bank->deposit(100, 2);
-        this->assertIntegerEquals(4, bank->getCoinQuantity(50));
+        this->assertIntegerEquals(3, bank->getCoinQuantity(50));
         this->assertIntegerEquals(2, bank->getCoinQuantity(100));
     }
 
