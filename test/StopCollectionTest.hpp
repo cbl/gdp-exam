@@ -6,8 +6,8 @@
 #include <functional>
 
 #include "TestCase.hpp"
-#include "src/StopCollection.cpp"
-#include "include/Stop.hpp"
+#include "StopCollection.cpp"
+#include "Stop.hpp"
 
 class StopCollectionTest : public TestCase
 {

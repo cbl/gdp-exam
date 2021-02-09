@@ -1,8 +1,10 @@
-#include <stdexcept>
-#include "include/Bank.hpp"
-#include "include/Stop.hpp"
-#include "include/Filesystem.hpp"
+#include "Bank.hpp"
+#include "Stop.hpp"
+#include "Filesystem.hpp"
 
+/*! @copydoc Bank::deposit()
+ *
+ */
 void Bank::deposit(const unsigned int &coin, const unsigned int &quantity)
 {
     if (this->wallet.find(coin) == this->wallet.end())
@@ -13,6 +15,9 @@ void Bank::deposit(const unsigned int &coin, const unsigned int &quantity)
     this->wallet[coin] += quantity;
 };
 
+/*! @copydoc Bank::withdraw()
+ *
+ */
 void Bank::withdraw(const unsigned int &coin, const unsigned int &quantity)
 {
     if (this->wallet.find(coin) == this->wallet.end())
@@ -30,6 +35,9 @@ void Bank::withdraw(const unsigned int &coin, const unsigned int &quantity)
     this->wallet[coin] = newQuantity;
 };
 
+/*! @copydoc Bank::getCoinQuantity()
+ *
+ */
 unsigned int Bank::getCoinQuantity(const unsigned int &coin)
 {
     if (this->wallet.find(coin) == this->wallet.end())
@@ -40,6 +48,9 @@ unsigned int Bank::getCoinQuantity(const unsigned int &coin)
     return this->wallet[coin];
 };
 
+/*! @copydoc Bank::getDescendingCoinTypes()
+ *
+ */
 std::array<unsigned int, 7> Bank::getDescendingCoinTypes()
 {
     return {

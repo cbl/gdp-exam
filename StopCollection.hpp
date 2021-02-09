@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+
 #include "Stop.hpp"
 
 class StopCollection

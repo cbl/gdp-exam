@@ -1,13 +1,34 @@
+#include <map>
 #include <iostream>
 
-#include "include/Stop.hpp"
-#include "include/UserInterface.hpp"
+#include "Stop.hpp"
+#include "UserInterface.hpp"
+
+/**
+ * Clear's cin error state on failure.
+ * 
+ * @return void
+ */
+void clearInputOnFailure()
+{
+    if (!std::cin.fail())
+    {
+        return;
+    }
+
+    // clear error state
+    std::cin.clear();
+    // discard 'bad' character(s)
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
 
 std::string UserInterface::getStringInput()
 {
     std::string input;
     std::cout << "> ";
     std::cin >> input;
+
+    clearInputOnFailure();
 
     return input;
 }
@@ -18,6 +39,8 @@ char UserInterface::getCharInput()
     std::cout << "> ";
     std::cin >> input;
 
+    clearInputOnFailure();
+
     return input;
 }
 
@@ -26,6 +49,8 @@ int UserInterface::getIntegerInput()
     int input;
     std::cout << "> ";
     std::cin >> input;
+
+    clearInputOnFailure();
 
     return input;
 }
@@ -77,7 +102,8 @@ void UserInterface::showChange(const std::map<unsigned int, unsigned int> change
         return;
     }
 
-    std::cout << "Rückgeld: " << std::endl;
+    std::cout
+        << "Rückgeld: " << std::endl;
 
     for (auto const &[coin, quantity] : change)
     {

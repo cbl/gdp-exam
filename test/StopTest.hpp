@@ -6,12 +6,12 @@
 #include <functional>
 
 #include "TestCase.hpp"
-#include "src/Stop.cpp"
+#include "Stop.cpp"
 
 class StopTest : public TestCase
 {
 public:
-    std::vector<std::function<void()>> getTests() override
+    std::vector<std::function<void()> > getTests() override
     {
         return {
             [this]() { this->test_getName_method_returns_name(); },

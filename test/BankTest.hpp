@@ -6,7 +6,7 @@
 #include <functional>
 
 #include "TestCase.hpp"
-#include "src/Bank.cpp"
+#include "Bank.cpp"
 
 class BankTest : public TestCase
 {

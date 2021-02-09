@@ -6,14 +6,14 @@
 #include <functional>
 
 #include "TestCase.hpp"
-#include "src/PriceCalculator.cpp"
-#include "include/Bank.hpp"
-#include "include/Stop.hpp"
+#include "PriceCalculator.cpp"
+#include "Bank.hpp"
+#include "Stop.hpp"
 
 class PriceCalculatorTest : public TestCase
 {
 public:
-    std::vector<std::function<void()>> getTests() override
+    std::vector<std::function<void()> > getTests() override
     {
         return {
             [this]() { this->test_getPriceFor(); },

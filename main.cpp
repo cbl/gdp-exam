@@ -4,12 +4,12 @@
 #include <exception>
 #include <stdexcept>
 
-#include "include/Stop.hpp"
-#include "include/StopCollection.hpp"
-#include "include/Database.hpp"
-#include "include/Filesystem.hpp"
-#include "include/PriceCalculator.hpp"
-#include "include/UserInterface.hpp"
+#include "Stop.hpp"
+#include "StopCollection.hpp"
+#include "Database.hpp"
+#include "Filesystem.hpp"
+#include "PriceCalculator.hpp"
+#include "UserInterface.hpp"
 
 struct CanceledException : public std::exception
 {
@@ -94,19 +94,12 @@ public:
         while (true)
         {
             this->ui->askForPayment(price);
+
             paid = this->ui->getIntegerInput();
 
             if (this->isValidPaymentInput(price, paid))
             {
                 return paid;
-            }
-
-            if (std::cin.fail())
-            {
-                // clear error state
-                std::cin.clear();
-                // discard 'bad' character(s)
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
 
             this->ui->showInvalidAmounPaidAndAskForRetry();
@@ -306,15 +299,14 @@ protected:
      * - it is in the range of unsigned integers
      * 
      * @param price The price input that is to be payed.
-     * @param amount 
+     * @param amount The payment input amount that was payed.
      * @return bool
      */
     bool isValidPaymentInput(const unsigned int &price, const int &amount)
     {
-        int diff = amount - price;
         unsigned int max = -1;
 
-        return diff >= 0 && amount < max;
+        return price <= amount && amount < max;
     }
 };
 
@@ -324,15 +316,13 @@ int main()
 
     Bank *bank = app->getBank();
 
-    bank->deposit(100, 2);
-    bank->deposit(50, 2);
-    bank->deposit(20, 2);
-    bank->deposit(10, 2);
-    bank->deposit(5, 2);
-    bank->deposit(2, 2);
-    bank->deposit(1, 2);
-
-    delete bank;
+    bank->deposit(100U, 2);
+    bank->deposit(50U, 2);
+    bank->deposit(20U, 2);
+    bank->deposit(10U, 2);
+    bank->deposit(5U, 2);
+    bank->deposit(2U, 2);
+    bank->deposit(1U, 2);
 
     try
     {

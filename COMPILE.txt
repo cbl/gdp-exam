@@ -1,9 +1,9 @@
-g++ -Wall -std=c++17 -I . -o bin/main \
-    apps/main.cpp \
-    src/Bank.cpp \
-    src/Database.cpp \
-    src/Filesystem.cpp \
-    src/PriceCalculator.cpp \
-    src/Stop.cpp \
-    src/StopCollection.cpp \
-    src/UserInterface.cpp
+g++ -Wall -std=c++17 -I . -o main \
+    main.cpp \
+    Bank.cpp \
+    Database.cpp \
+    Filesystem.cpp \
+    PriceCalculator.cpp \
+    Stop.cpp \
+    StopCollection.cpp \
+    UserInterface.cpp

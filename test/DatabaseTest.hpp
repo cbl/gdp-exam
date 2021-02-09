@@ -6,15 +6,15 @@
 #include <functional>
 
 #include "TestCase.hpp"
-#include "src/Database.cpp"
-#include "include/Stop.hpp"
-#include "include/StopCollection.hpp"
-#include "include/Filesystem.hpp"
+#include "Database.cpp"
+#include "Stop.hpp"
+#include "StopCollection.hpp"
+#include "Filesystem.hpp"
 
 class DatabaseTest : public TestCase
 {
 public:
-    std::vector<std::function<void()>> getTests() override
+    std::vector<std::function<void()> > getTests() override
     {
         return {
             [this]() { this->test_getStops(); },

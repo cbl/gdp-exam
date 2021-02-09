@@ -6,12 +6,12 @@
 #include <functional>
 
 #include "TestCase.hpp"
-#include "src/Filesystem.cpp"
+#include "Filesystem.cpp"
 
 class FilesystemTest : public TestCase
 {
 public:
-    std::vector<std::function<void()>> getTests() override
+    std::vector<std::function<void()> > getTests() override
     {
         return {
             [this]() { this->test_getLines(); },

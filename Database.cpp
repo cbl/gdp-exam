@@ -1,14 +1,20 @@
-#include "include/Database.hpp"
-#include "include/Stop.hpp"
-#include "include/StopCollection.hpp"
-#include "include/Filesystem.hpp"
+#include "Database.hpp"
+#include "Stop.hpp"
+#include "StopCollection.hpp"
+#include "Filesystem.hpp"
 
+/*! @copydoc Database::Database()
+ *
+ */
 Database::Database(Filesystem *files, const std::string path)
 {
     this->files = files;
     this->path = path;
 };
 
+/*! @copydoc Database::getStops()
+ *
+ */
 StopCollection *Database::getStops()
 {
     std::vector<Stop *> stops;
@@ -24,6 +30,9 @@ StopCollection *Database::getStops()
     return new StopCollection(stops);
 }
 
+/*! @copydoc Database::getLines()
+ *
+ */
 std::vector<std::string> Database::getLines()
 {
     if (!this->lines.empty())
@@ -34,6 +43,9 @@ std::vector<std::string> Database::getLines()
     return this->lines = this->files->getLines(this->path);
 }
 
+/*! @copydoc Database::getPricePerDistance()
+ *
+ */
 unsigned int Database::getPricePerDistance()
 {
     return std::stoi(this->getLines().at(0));
