@@ -1,0 +1,198 @@
+# Test
+
+In diesem Dokumnet sind händische Testdurchläufe dokumentiert. Ein Testdurchlauf 
+besteht aus Eingakombinationen, der erwarteten Ausgabe und der tatsächlichen 
+Ausgabe. Jeder Testdurchlauf wurde nach Neustart des Programms ausgeführt.
+
+Eingabevorgänge des Buchungsvorgang sind:
+
+- Haltestellenauswahl
+- Bezahlung
+- Abbruch
+
+Im folgenden sind die unten verwendenten Prefixe beschrieben:
+
+- `>:` Test Eingabe
+- `E:` Erwartete Ausgabe
+- `A:` Tatsächliche Ausgabe
+
+Die getestete Datenbank Datei `db.txt` sieht wie folgt aus:
+
+```
+15
+5
+Hauptbahnhof
+5
+Südplatz
+2
+Hochschule
+1
+Zoo
+4
+Ganz weit weg 
+20
+Cafe
+1
+```
+
+## Test 1 - Ungültige Eingabe bei Haltestellenauswahl
+
+Haltestellenauswahl
+>: Hamburg
+E: Haltestelle nicht vorhanden. Erneute eingabeaufvorderung.
+A: Haltestelle nicht vorhanden. Erneute eingabeaufvorderung.
+
+Test erfolgreich.
+
+## Test 2 - Ticket Kauf mit passender Bezahlung
+
+Haltestellenauswahl
+>: Zoo
+E: Ticketpreis Anzeige mit dem Wert 60 erwartet. (15 * 4)
+A: Ticketpresi Anzeige mti dem Wert 60.
+
+Bezahlung
+>: 60
+E: Ticketanzeige erwartet. Kein Rückgeld. Erneute Haltestellenauswahl.
+a: Ticketanzeige. Kein Rückgeld. Erneute Haltestellenauswahl.
+
+Test erfolgreich.
+
+## Test 3 - Ticketkauf mit Wechselgeldrückgabe
+
+Betrag aller Münzen im Münzfach: 1*2+2*2+5*2+10*2+20*2+50*2+100*2 = 376
+
+Haltestellenauswahl
+>: Cafe
+E: Preis 15
+A: Preis 15
+
+## Test 3.1 - Rückgeldausgabe Möglich
+
+Bezahlung
+>: 26
+E: Ticketanzeige erwartet. Rückgeld anzeige erwartet. Anschließend erneute 
+   Haltestellenauswahl.
+   Erwartetes Rückgeld:
+   - Gesamt: 11 (26 - 15)
+   - 1x 1
+   - 1x 10
+a: Ticketanzeige. Kein Rückgeld. Erneute Haltestellenauswahl.
+   Rückgeld:
+   - Gesamt 11
+   - 1x 1
+   - 1x 10
+
+Test erfolgreich.
+
+## Test 3.2 - Rückgeldausgabe aller Münzen
+
+Bezahlung
+>: 391
+E: Erwartetes Rückgeld:
+   - Gesamt: 376 (391 - 15)
+   - 2x 1
+   - 2x 2
+   - 2x 5
+   - 2x 10
+   - 2x 20
+   - 2x 50
+   - 2x 100
+A: Rückgeld:
+   - 2x 1
+   - 2x 2
+   - 2x 5
+   - 2x 10
+   - 2x 20
+   - 2x 50
+   - 2x 100
+
+## Test 3.2 - Rückgeldausgabe nicht möglich
+
+Bezahlung
+>: 392
+E: Rückgeldausgabe nicht Möglich. Erneut bezahlen oder abbruch?
+A: Rückgeldausgabe nicht Möglich. Erneut bezahlen oder abbruch?
+
+Test erfolgreich.
+
+## Test 3.2 - Rückgeldausgabe möglich anschließend nicht möglich.
+
+Bezahlung
+>: 215
+E: Erwartetes Rückgeld:
+   - 2x 100
+A: Rückgeld:
+   - 2x 100
+
+Haltestellenauswahl
+>: Cafe
+
+Bezahlung
+>: 215
+E: Rückgeldausgabe nicht Möglich. Erneut bezahlen oder abbruch?
+A: Rückgeldausgabe nicht Möglich. Erneut bezahlen oder abbruch?
+
+Test erfolgreich.
+
+Test erfolgreich.
+
+## Test 5 - Ticketkauf mit ungültiger Eingabe bei Bezahlung.
+
+Haltestellenauswahl
+>: Hochschule
+E: Preis 15
+A: Preis 15
+
+## Test 5.1 - Eingabe unter Ticketpreis.
+
+Bezahlung
+>: 14
+E: Ungültiger Betrag. Erneut versuchen oder Abbruch?
+a: Ungültiger Betrag. Erneut versuchen oder Abbruch?
+
+Test erfolgreich.
+
+## Test 5.2 - Negativer Eingabewert.
+
+Bezahlung
+>: -1
+E: Ungültiger Betrag. Erneut versuchen oder Abbruch?
+a: Ungültiger Betrag. Erneut versuchen oder Abbruch?
+
+Test erfolgreich.
+
+## Test 5.3 - Buchstabe.
+
+Bezahlung
+>: a
+E: Ungültiger Betrag. Erneut versuchen oder Abbruch?
+a: Ungültiger Betrag. Erneut versuchen oder Abbruch?
+
+Test erfolgreich.
+
+## Test 6 - Ticketkauf mit abbruch nach ungültiger Eingabe.
+
+Haltestellenauswahl
+>: Cafe
+
+Bezahlung
+>: -1
+
+## Test 6.1 - Abbruch
+
+Abbruch:
+>: j
+E: Buchungsvorgang abbgebrochen. Haltestellenauswahl.
+A: Buchungsvorgang abbgebrochen. Haltestellenauswahl.
+
+Test erfolgreich.
+
+## Test 6.2 - Weiter machen.
+
+Abbruch:
+>: n
+E: Erneute Zahlungsaufforderung.
+A: Erneute Zahlungsaufforderung.
+
+Test erfolgreich.
