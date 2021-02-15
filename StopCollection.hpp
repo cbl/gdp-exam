@@ -1,9 +1,14 @@
-#pragma once
+#ifndef STOP_COLLECTION_H_INCLUDED
+#define STOP_COLLECTION_H_INCLUDED
 
 #include <vector>
 
 #include "Stop.hpp"
 
+/**
+ * Helper for working with multiple stop objects.
+ * 
+ */
 class StopCollection
 {
 protected:
@@ -45,3 +50,5 @@ public:
      */
     void forEach(std::function<void(Stop *)> handler);
 };
+
+#endif // #ifndef STOP_COLLECTION_H_INCLUDED

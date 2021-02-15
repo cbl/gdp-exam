@@ -1,9 +1,14 @@
-#pragma once
+#ifndef BANK_H_INCLUDED
+#define BANK_H_INCLUDED
 
 #include <iostream>
 #include <map>
 #include <array>
 
+/**
+ * Responsible for managing coins.
+ * 
+ */
 class Bank
 {
 protected:
@@ -53,3 +58,5 @@ public:
      */
     std::array<unsigned int, 7> getDescendingCoinTypes();
 };
+
+#endif // #ifndef BANK_H_INCLUDED

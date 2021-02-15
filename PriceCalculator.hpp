@@ -1,10 +1,15 @@
-#pragma once
+#ifndef PRICE_CALCULATOR_H_INCLUDED
+#define PRICE_CALCULATOR_H_INCLUDED
 
 #include <string>
 
 #include "Bank.hpp"
 #include "Stop.hpp"
 
+/**
+ * Responsible for the calculation with monetary amounts.
+ * 
+ */
 class PriceCalculator
 {
 protected:
@@ -43,3 +48,5 @@ public:
      */
     std::map<unsigned int, unsigned int> getChange(unsigned int changeAmount);
 };
+
+#endif // #ifndef PRICE_CALCULATOR_H_INCLUDED

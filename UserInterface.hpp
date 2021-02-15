@@ -1,4 +1,5 @@
-#pragma once
+#ifndef USER_INTERFACE_H_INCLUDED
+#define USER_INTERFACE_H_INCLUDED
 
 #include <string>
 #include <map>
@@ -6,6 +7,12 @@
 #include "Stop.hpp"
 #include "StopCollection.hpp"
 
+/**
+ * Responsible for handling display and input operations.
+ * 
+ * Implementation depends on the ticket machine on which the program is running.
+ * 
+ */
 class UserInterface
 {
 public:
@@ -128,3 +135,5 @@ public:
      */
     void showGiveChangeNotPossibleAndAskForRetry();
 };
+
+#endif // #ifndef USER_INTERFACE_H_INCLUDED

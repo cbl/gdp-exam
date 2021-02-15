@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DATABASE_H_INCLUDED
+#define DATABASE_H_INCLUDED
 
 #include <string>
 #include <vector>
@@ -7,6 +8,11 @@
 #include "Stop.hpp"
 #include "StopCollection.hpp"
 
+/**
+ * Handles reading and interpreting data from the implemented filebased 
+ * database.
+ * 
+ */
 class Database
 {
 protected:
@@ -39,3 +45,5 @@ public:
      */
     unsigned int getPricePerDistance();
 };
+
+#endif // #ifndef DATABASE_H_INCLUDED

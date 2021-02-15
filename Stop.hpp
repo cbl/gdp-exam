@@ -1,7 +1,12 @@
-#pragma once
+#ifndef STOP_H_INCLUDED
+#define STOP_H_INCLUDED
 
 #include <string>
 
+/**
+ * Model of a stop.
+ * 
+ */
 class Stop
 {
 protected:
@@ -31,3 +36,5 @@ public:
      */
     unsigned int getDistance();
 };
+
+#endif // #ifndef STOP_H_INCLUDED

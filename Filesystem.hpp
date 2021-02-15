@@ -1,8 +1,13 @@
-#pragma once
+#ifndef FILESYSTEM_H_INCLUDED
+#define FILESYSTEM_H_INCLUDED
 
 #include <string>
 #include <vector>
 
+/**
+ * Responsible for working with files.
+ * 
+ */
 class Filesystem
 {
 public:
@@ -17,3 +22,5 @@ public:
      */
     std::vector<std::string> getLines(const std::string &path);
 };
+
+#endif // #ifndef FILESYSTEM_H_INCLUDED
