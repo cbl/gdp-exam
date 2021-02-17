@@ -5,21 +5,21 @@
 Compile command:
 
 ```shell
-g++ -Wall -std=c++17 -I . -o bin/main \
-    apps/main.cpp \
-    src/Bank.cpp \
-    src/Database.cpp \
-    src/Filesystem.cpp \
-    src/PriceCalculator.cpp \
-    src/Stop.cpp \
-    src/StopCollection.cpp \
-    src/UserInterface.cpp
+g++ -Wall -std=c++17 -I . -Os -o main \
+    main.cpp \
+    Bank.cpp \
+    Database.cpp \
+    Filesystem.cpp \
+    PriceCalculator.cpp \
+    Stop.cpp \
+    StopCollection.cpp \
+    TerminalUserInterface.cpp
 ```
 
 Execute the generated binary:
 
 ```shell
-bin/main
+./main
 ```
 
 ## Testing
