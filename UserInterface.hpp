@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 
+#include "Bank.hpp"
 #include "Stop.hpp"
 #include "StopCollection.hpp"
 
@@ -100,7 +101,7 @@ public:
      * @param change A map contaning all coin types and the number of the 
      *      associated coin types that the user gets back.
      */
-    void showChange(const std::map<unsigned int, unsigned int> change);
+    void showChange(const std::map<Bank::Coin, unsigned int> change);
 
     /**
      * Ask the user to enter the desired destination.

@@ -5,7 +5,7 @@
 /*! @copydoc Bank::deposit()
  *
  */
-void Bank::deposit(const unsigned int &coin, const unsigned int &quantity)
+void Bank::deposit(const Coin &coin, const unsigned int &quantity)
 {
     if (this->wallet.find(coin) == this->wallet.end())
     {
@@ -18,7 +18,7 @@ void Bank::deposit(const unsigned int &coin, const unsigned int &quantity)
 /*! @copydoc Bank::withdraw()
  *
  */
-void Bank::withdraw(const unsigned int &coin, const unsigned int &quantity)
+void Bank::withdraw(const Coin &coin, const unsigned int &quantity)
 {
     if (this->wallet.find(coin) == this->wallet.end())
     {
@@ -38,7 +38,7 @@ void Bank::withdraw(const unsigned int &coin, const unsigned int &quantity)
 /*! @copydoc Bank::getCoinQuantity()
  *
  */
-unsigned int Bank::getCoinQuantity(const unsigned int &coin)
+unsigned int Bank::getCoinQuantity(const Coin &coin)
 {
     if (this->wallet.find(coin) == this->wallet.end())
     {
@@ -51,7 +51,7 @@ unsigned int Bank::getCoinQuantity(const unsigned int &coin)
 /*! @copydoc Bank::getDescendingCoinTypes()
  *
  */
-std::array<unsigned int, 7> Bank::getDescendingCoinTypes()
+std::array<Bank::Coin, 7> Bank::getDescendingCoinTypes()
 {
     return {
         Bank::COIN_100,

@@ -25,39 +25,39 @@ public:
     void test_deposit()
     {
         Bank *bank = new Bank();
-        bank->deposit(50, 3);
-        bank->deposit(100, 2);
-        this->assertIntegerEquals(3, bank->getCoinQuantity(50));
-        this->assertIntegerEquals(2, bank->getCoinQuantity(100));
+        bank->deposit(Bank::COIN_50, 3);
+        bank->deposit(Bank::COIN_100, 2);
+        this->assertIntegerEquals(3, bank->getCoinQuantity(Bank::COIN_50));
+        this->assertIntegerEquals(2, bank->getCoinQuantity(Bank::COIN_100));
     }
 
     void test_withdraw()
     {
         Bank *bank = new Bank();
-        bank->deposit(50, 3);
-        bank->withdraw(50, 2);
-        this->assertIntegerEquals(1, bank->getCoinQuantity(50));
+        bank->deposit(Bank::COIN_50, 3);
+        bank->withdraw(Bank::COIN_50, 2);
+        this->assertIntegerEquals(1, bank->getCoinQuantity(Bank::COIN_50));
     }
 
     void test_withdraw_fails_when_coins_are_not_available()
     {
         Bank *bank = new Bank();
         this->expectException();
-        bank->deposit(50, 3);
-        bank->withdraw(50, 4);
+        bank->deposit(Bank::COIN_50, 3);
+        bank->withdraw(Bank::COIN_50, 4);
     }
 
     void test_getCoinQuantity_when_no_coins_where_deposited()
     {
         Bank *bank = new Bank();
-        this->assertIntegerEquals(0, bank->getCoinQuantity(50));
+        this->assertIntegerEquals(0, bank->getCoinQuantity(Bank::COIN_50));
     }
 
     void test_getDescendingCoinTypes()
     {
         Bank *bank = new Bank();
 
-        std::array<unsigned int, 7> expectedCoinTypes = {100, 50, 20, 10, 5, 2, 1};
+        std::array<Bank::Coin, 7> expectedCoinTypes = {Bank::COIN_100, Bank::COIN_50, Bank::COIN_20, Bank::COIN_10, Bank::COIN_5, Bank::COIN_2, Bank::COIN_1};
 
         this->makeAssertion((expectedCoinTypes == bank->getDescendingCoinTypes()));
     }

@@ -23,17 +23,18 @@ unsigned int PriceCalculator::getPriceFor(Stop *stop)
  * The change is calculated as the smallest possible number of coins based on 
  * the number of coins in the bank.
  */
-std::map<unsigned int, unsigned int> PriceCalculator::getChange(unsigned int changeAmount)
+std::map<Bank::Coin, unsigned int> PriceCalculator::getChange(unsigned int changeAmount)
 {
-    const std::array<unsigned int, 7> &coinTypes = this->bank->getDescendingCoinTypes();
-    std::map<unsigned int, unsigned int> change;
+    const std::array<Bank::Coin, 7> &coinTypes = this->bank->getDescendingCoinTypes();
+    std::map<Bank::Coin, unsigned int> change;
 
     for (int i = 0; i < 7; i++)
     {
-        unsigned int coin = coinTypes.at(i);
+        Bank::Coin coin = coinTypes.at(i);
+        unsigned int value = Bank::getCoinValue(coin);
         unsigned int quantity = this->bank->getCoinQuantity(coin);
 
-        while (coin <= changeAmount)
+        while (value <= changeAmount)
         {
             if (change[coin] >= quantity)
             {
@@ -46,7 +47,7 @@ std::map<unsigned int, unsigned int> PriceCalculator::getChange(unsigned int cha
             }
 
             change[coin]++;
-            changeAmount -= coin;
+            changeAmount -= value;
         }
     }
 

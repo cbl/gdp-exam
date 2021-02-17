@@ -43,10 +43,10 @@ public:
      * The coin types and number of the associated coin types are returned.
      * 
      * @param changeAmount The total change amount.
-     * @return std::map<unsigned int, unsigned int> map of coin types and the 
-     *      number of coin types.
+     * @return std::map<Bank::Coin, unsigned int> map of coin types and the 
+     *      number of the associated coin types.
      */
-    std::map<unsigned int, unsigned int> getChange(unsigned int changeAmount);
+    std::map<Bank::Coin, unsigned int> getChange(unsigned int changeAmount);
 };
 
 #endif // #ifndef PRICE_CALCULATOR_H_INCLUDED

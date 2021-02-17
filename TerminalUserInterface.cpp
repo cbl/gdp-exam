@@ -95,7 +95,7 @@ void UserInterface::showPayment(const unsigned int &price, const unsigned int &p
     std::cout << "Sie bekommen " << paid - price << " Geld zurück." << std::endl;
 }
 
-void UserInterface::showChange(const std::map<unsigned int, unsigned int> change)
+void UserInterface::showChange(const std::map<Bank::Coin, unsigned int> change)
 {
     if (change.empty())
     {
@@ -107,7 +107,7 @@ void UserInterface::showChange(const std::map<unsigned int, unsigned int> change
 
     for (auto const &[coin, quantity] : change)
     {
-        std::cout << "- " << quantity << "x " << coin << std::endl;
+        std::cout << "- " << quantity << "x " << Bank::getCoinValue(coin) << std::endl;
     }
 }
 

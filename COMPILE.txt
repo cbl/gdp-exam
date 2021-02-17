@@ -1,4 +1,4 @@
-g++ -Wall -std=c++17 -I . -o main \
+g++ -Wall -std=c++17 -I . -Os -o main \
     main.cpp \
     Bank.cpp \
     Database.cpp \
@@ -6,4 +6,4 @@ g++ -Wall -std=c++17 -I . -o main \
     PriceCalculator.cpp \
     Stop.cpp \
     StopCollection.cpp \
-    UserInterface.cpp
+    TerminalUserInterface.cpp

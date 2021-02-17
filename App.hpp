@@ -70,7 +70,7 @@ public:
     {
         Stop *destination;
         unsigned int price;
-        std::map<unsigned int, unsigned int> change;
+        std::map<Bank::Coin, unsigned int> change;
 
         this->ui->showBookingStart();
         this->ui->showAllStops(this->stops);
@@ -174,12 +174,12 @@ private:
      *   enough change.
      * 
      * @param price The price that is to be payed.
-     * @return std::map<unsigned int, unsigned int> The calculated change for to 
+     * @return std::map<Bank::Coin, unsigned int> The calculated change for to 
      *      repay the excess amount of money.
      */
-    std::map<unsigned int, unsigned int> payment(const unsigned int &price)
+    std::map<Bank::Coin, unsigned int> payment(const unsigned int &price)
     {
-        std::map<unsigned int, unsigned int> change;
+        std::map<Bank::Coin, unsigned int> change;
         unsigned int paid;
 
         while (true)
@@ -248,7 +248,7 @@ private:
      * 
      * @param change The change the is to be given.
      */
-    void giveChange(const std::map<unsigned int, unsigned int> &change)
+    void giveChange(const std::map<Bank::Coin, unsigned int> &change)
     {
         for (auto const &[coin, quantity] : change)
         {
@@ -315,13 +315,13 @@ private:
      */
     void fillBankWithMoney()
     {
-        this->bank->deposit(100U, 2);
-        this->bank->deposit(50U, 2);
-        this->bank->deposit(20U, 2);
-        this->bank->deposit(10U, 2);
-        this->bank->deposit(5U, 2);
-        this->bank->deposit(2U, 2);
-        this->bank->deposit(1U, 2);
+        this->bank->deposit(Bank::COIN_100, 2);
+        this->bank->deposit(Bank::COIN_50, 2);
+        this->bank->deposit(Bank::COIN_20, 2);
+        this->bank->deposit(Bank::COIN_10, 2);
+        this->bank->deposit(Bank::COIN_5, 2);
+        this->bank->deposit(Bank::COIN_2, 2);
+        this->bank->deposit(Bank::COIN_1, 2);
     }
 };
 

@@ -34,18 +34,18 @@ public:
     {
         PriceCalculator *priceCalculator = new PriceCalculator(new Bank(), 10);
 
-        std::map<unsigned int, unsigned int> expectedChange;
+        std::map<Bank::Coin, unsigned int> expectedChange;
 
-        expectedChange = {{100, 2}};
+        expectedChange = {{Bank::COIN_100, 2}};
         this->makeAssertion((expectedChange == priceCalculator->getChange(200)));
 
-        expectedChange = {{20, 1}};
+        expectedChange = {{Bank::COIN_20, 1}};
         this->makeAssertion((expectedChange == priceCalculator->getChange(20)));
 
-        expectedChange = {{20, 1}};
+        expectedChange = {{Bank::COIN_20, 1}};
         this->makeAssertion((expectedChange == priceCalculator->getChange(20)));
 
-        expectedChange = {{100, 1}, {20, 2}};
+        expectedChange = {{Bank::COIN_100, 1}, {Bank::COIN_20, 2}};
         this->makeAssertion((expectedChange == priceCalculator->getChange(140)));
     }
 
@@ -70,9 +70,9 @@ public:
     }
 };
 
-unsigned int Bank::getCoinQuantity(const unsigned int &coin)
+unsigned int Bank::getCoinQuantity(const Bank::Coin &coin)
 {
-    if (coin == 100 || coin == 20)
+    if (coin == Bank::COIN_100 || coin == Bank::COIN_20)
     {
         return 2;
     }
@@ -80,17 +80,9 @@ unsigned int Bank::getCoinQuantity(const unsigned int &coin)
     return 0;
 }
 
-std::array<unsigned int, 7> Bank::getDescendingCoinTypes()
+std::array<Bank::Coin, 7> Bank::getDescendingCoinTypes()
 {
-    return {
-        100,
-        50,
-        20,
-        10,
-        5,
-        2,
-        1,
-    };
+    return {Bank::COIN_100, Bank::COIN_50, Bank::COIN_20, Bank::COIN_10, Bank::COIN_5, Bank::COIN_2, Bank::COIN_1};
 }
 
 Stop::Stop(std::string name, unsigned int distance)
